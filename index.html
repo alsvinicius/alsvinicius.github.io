@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f8f5" />
+    <meta name="description" content="Projetos públicos de Vinicius Alexandre no GitHub." />
+    <title>Vinicius Alexandre — projetos</title>
+    <link rel="preconnect" href="https://api.github.com" />
+    <link rel="preconnect" href="https://avatars.githubusercontent.com" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="#inicio" aria-label="Vinicius Alexandre, início">
+        <span class="wordmark-mark" aria-hidden="true">v.</span>
+        <span>Vinicius Alexandre</span>
+      </a>
+      <a class="top-link" href="https://github.com/alsvinicius" target="_blank" rel="noreferrer">
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main id="inicio">
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro-copy">
+          <p class="eyebrow"><span class="status-dot"></span> PORTFÓLIO ABERTO · SÃO PAULO, BR</p>
+          <h1 id="intro-title">Ideias que viram<br /><span>projetos.</span></h1>
+          <p class="intro-description">Um panorama dos meus repositórios públicos: ferramentas, experimentos e coisas em construção.</p>
+          <a class="text-link" href="#repositorios">Explorar projetos <span aria-hidden="true">↓</span></a>
+        </div>
+        <aside class="intro-aside" aria-label="Sobre os projetos">
+          <div class="aside-index">01 <span>—</span> 03</div>
+          <p>Feito em público.<br />Atualizado direto do GitHub.</p>
+          <a href="https://github.com/alsvinicius?tab=repositories" target="_blank" rel="noreferrer">Ver perfil completo <span aria-hidden="true">↗</span></a>
+        </aside>
+        <div class="intro-rule" aria-hidden="true"><span></span></div>
+      </section>
+
+      <section class="projects" id="repositorios" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">O QUE ESTOU FAZENDO</p>
+            <h2 id="projects-title">Repositórios<span class="heading-period">.</span></h2>
+          </div>
+          <p class="result-count" id="result-count" aria-live="polite">Carregando do GitHub…</p>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-wrap">
+            <span class="sr-only">Buscar projetos</span>
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="search" type="search" placeholder="Buscar projetos…" autocomplete="off" />
+            <kbd>/</kbd>
+          </label>
+          <label class="language-wrap">
+            <span class="sr-only">Filtrar por linguagem</span>
+            <select id="language"><option value="">Todas as linguagens</option></select>
+          </label>
+          <label class="sort-wrap">
+            <span class="sr-only">Ordenar projetos</span>
+            <select id="sort">
+              <option value="updated">Atualizados recentemente</option>
+              <option value="stars">Mais estrelas</option>
+              <option value="name">Nome A–Z</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="topic-note" id="topic-note" hidden>
+          <span class="topic-spark" aria-hidden="true">✳</span>
+          <span><strong>Em destaque</strong> — marcados com o tópico <code>portfolio</code> no GitHub.</span>
+          <button id="clear-topic" type="button">Ver todos</button>
+        </div>
+
+        <div class="project-grid" id="project-grid" aria-live="polite" aria-busy="true"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span aria-hidden="true">∅</span>
+          <p>Nenhum projeto encontrado com esses filtros.</p>
+          <button id="reset-filters" type="button">Limpar filtros</button>
+        </div>
+        <div class="load-error" id="load-error" hidden>
+          <p>Não consegui carregar os projetos agora.</p>
+          <button id="retry" type="button">Tentar novamente</button>
+          <span>Os repositórios estão no <a href="https://github.com/alsvinicius?tab=repositories">perfil do GitHub ↗</a>.</span>
+        </div>
+        <div class="loading-state" id="loading-state"><span class="loader"></span> Buscando repositórios públicos…</div>
+      </section>
+
+      <section class="closing" aria-label="Contato">
+        <p class="eyebrow">TEM UMA IDEIA?</p>
+        <div class="closing-row">
+          <h2>Vamos conversar<span class="heading-period">?</span></h2>
+          <a class="round-link" href="https://github.com/alsvinicius" target="_blank" rel="noreferrer" aria-label="Abrir GitHub de Vinicius Alexandre">↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> Vinicius Alexandre</span>
+      <span>Dados públicos via <a href="https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user">GitHub API</a></span>
+      <a href="#inicio">Voltar ao topo ↑</a>
+    </footer>
+  </body>
+</html>

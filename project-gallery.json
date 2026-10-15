@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "project": {
+    "name": "Portfolio GitHub",
+    "familyName": "Portfolio GitHub",
+    "source": "https://github.com/alsvinicius/alsvinicius.github.io",
+    "path": "."
+  },
+  "services": [
+    {
+      "id": "web",
+      "name": "Portfolio",
+      "portEnv": "PAGE_PORT",
+      "interfaceUrl": "http://127.0.0.1:4178"
+    }
+  ]
+}
