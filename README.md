@@ -28,5 +28,5 @@ navegador.
 ## Publicar no GitHub Pages
 
 O workflow em `.github/workflows/pages.yml` publica o conteúdo estático a cada
-push para `main`. No GitHub, configure Pages para usar **GitHub Actions** em
-Settings → Pages. O deploy é feito para `https://alsvinicius.github.io/`.
+push para `main`. GitHub Pages já está configurado para usar **GitHub Actions**
+em `https://alsvinicius.github.io/`.
