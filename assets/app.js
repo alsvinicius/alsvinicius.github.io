@@ -6,12 +6,10 @@ const count = document.querySelector('#result-count');
 const search = document.querySelector('#search');
 const languageSelect = document.querySelector('#language');
 const sortSelect = document.querySelector('#sort');
-const topicNote = document.querySelector('#topic-note');
 const emptyState = document.querySelector('#empty-state');
 const loadError = document.querySelector('#load-error');
 const loadingState = document.querySelector('#loading-state');
 let repositories = [];
-let featuredOnly = false;
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
@@ -37,12 +35,14 @@ function populateLanguages() {
   languageSelect.innerHTML = '<option value="">Todas as linguagens</option>' +
     languages.map((language) => `<option value="${escapeHtml(language)}">${escapeHtml(language)}</option>`).join('');
   languageSelect.value = languages.includes(selected) ? selected : '';
+  document.querySelector('#repo-total').textContent = repositories.length;
+  document.querySelector('#language-total').textContent = languages.length;
 }
 
 function renderCard(repo) {
   const topics = repo.topics || [];
   const featured = topics.includes('portfolio');
-  const description = repo.description || 'Sem descrição por enquanto.';
+  const description = repo.description || 'Sem descrição.';
   const descriptionClass = repo.description ? 'repo-description' : 'repo-description is-empty';
   const visibleTopics = topics.slice(0, 3);
   const archived = repo.archived ? '<span class="card-stat">arquivado</span>' : '';
@@ -70,8 +70,7 @@ function render() {
     const matchesQuery = !query || [repo.name, repo.description, repo.language, ...(repo.topics || [])]
       .filter(Boolean).join(' ').toLocaleLowerCase('pt-BR').includes(query);
     const matchesLanguage = !languageSelect.value || repo.language === languageSelect.value;
-    const matchesFeatured = !featuredOnly || (repo.topics || []).includes('portfolio');
-    return matchesQuery && matchesLanguage && matchesFeatured;
+    return matchesQuery && matchesLanguage;
   });
 
   if (sortSelect.value === 'stars') filtered.sort((a, b) => b.stargazers_count - a.stargazers_count);
@@ -82,7 +81,6 @@ function render() {
   count.textContent = `${filtered.length} ${filtered.length === 1 ? 'repositório' : 'repositórios'}`;
   grid.hidden = filtered.length === 0;
   emptyState.hidden = filtered.length > 0;
-  topicNote.hidden = !featuredOnly;
   grid.setAttribute('aria-busy', 'false');
 }
 
@@ -105,7 +103,7 @@ async function loadRepositories() {
   } catch (error) {
     loadingState.hidden = true;
     grid.setAttribute('aria-busy', 'false');
-    count.textContent = 'GitHub indisponível';
+    count.textContent = 'Não foi possível carregar';
     loadError.hidden = false;
   }
 }
@@ -114,21 +112,10 @@ search.addEventListener('input', render);
 languageSelect.addEventListener('change', render);
 sortSelect.addEventListener('change', render);
 document.querySelector('#retry').addEventListener('click', loadRepositories);
-document.querySelector('#clear-topic').addEventListener('click', () => { featuredOnly = false; render(); });
 document.querySelector('#reset-filters').addEventListener('click', () => {
   search.value = '';
   languageSelect.value = '';
-  featuredOnly = false;
   render();
-});
-document.querySelector('.text-link').addEventListener('click', (event) => {
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-  const featured = repositories.some((repo) => (repo.topics || []).includes('portfolio'));
-  if (!featured) return;
-  event.preventDefault();
-  featuredOnly = true;
-  render();
-  document.querySelector('#repositorios').scrollIntoView({ behavior: 'smooth' });
 });
 document.addEventListener('keydown', (event) => {
   if (event.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
