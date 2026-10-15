@@ -44,13 +44,26 @@ function artworkClass(name) {
   return `artwork artwork-${hash % 6}`;
 }
 
+function artworkScene(theme) {
+  const scenes = [
+    '<div class="scene-terminal"><span>09:00 <i></i></span><span>12:30 <i></i><b>▶</b></span><span>18:00 <i></i></span></div>',
+    '<div class="scene-books"><i></i><i></i><i></i></div>',
+    '<div class="scene-mosaic"><i></i><i></i><i></i><i></i><i></i><i></i></div>',
+    '<div class="scene-orbit"><i></i><i></i><b></b></div>',
+    '<div class="scene-nodes"><i></i><i></i><i></i><i></i><i></i></div>',
+    '<div class="scene-waves"><i></i><i></i><i></i><i></i></div>'
+  ];
+  return scenes[theme];
+}
+
 function renderArtwork(repo, compact = false) {
   const name = escapeHtml(repo.name);
-  const initials = escapeHtml(repo.name.split(/[-_\s]+/).map((part) => part[0]).join('').slice(0, 3).toUpperCase());
   const language = escapeHtml(repo.language || 'OPEN SOURCE');
-  return `<div class="${artworkClass(repo.name)}${compact ? ' artwork-compact' : ''}" aria-hidden="true">
+  const className = artworkClass(repo.name);
+  const theme = Number(className.match(/artwork-(\d+)/)[1]);
+  return `<div class="${className}${compact ? ' artwork-compact' : ''}" aria-hidden="true">
     <span class="artwork-index">${language}</span>
-    <span class="artwork-glyph">${initials || '↗'}</span>
+    ${artworkScene(theme)}
     <span class="artwork-name">${name}</span>
     <span class="artwork-mark">↗</span>
   </div>`;
@@ -97,19 +110,28 @@ function renderCard(repo, index) {
 }
 
 function chooseFeatured(items) {
-  if (!items.length) return;
-  if (items.length === 1) return items[0];
-  let previous = '';
-  try { previous = localStorage.getItem('portfolio-last-featured') || ''; } catch {}
-  const choices = items.filter((repo) => repo.name !== previous);
-  const chosen = choices[Math.floor(Math.random() * choices.length)];
-  try { localStorage.setItem('portfolio-last-featured', chosen.name); } catch {}
+  if (items.length <= 3) return items;
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const other = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
+  }
+
+  const previous = (() => {
+    try { return JSON.parse(localStorage.getItem('portfolio-last-featured') || '[]'); }
+    catch { return []; }
+  })();
+  let chosen = shuffled.slice(0, 3);
+  const selectionKey = (selection) => selection.map((repo) => repo.name).sort().join('|');
+  if (selectionKey(chosen) === [...previous].sort().join('|')) {
+    chosen = shuffled.slice(1, 4);
+  }
+  try { localStorage.setItem('portfolio-last-featured', JSON.stringify(chosen.map((repo) => repo.name))); } catch {}
   return chosen;
 }
 
 function renderFeaturedProject() {
-  const repo = chooseFeatured(repositories);
-  featuredProject.innerHTML = repo ? renderFeatured(repo) : '';
+  featuredProject.innerHTML = chooseFeatured(repositories).map(renderFeatured).join('');
 }
 
 function render() {
