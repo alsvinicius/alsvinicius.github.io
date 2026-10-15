@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#292820"/>
-  <path d="M14 19h8v17c0 7 3 11 9 11s9-4 9-11V19h8v18c0 12-6 18-17 18S14 49 14 37V19Z" fill="#f3f0e8"/>
-  <circle cx="51" cy="49" r="5" fill="#b83c25"/>
+  <text x="3" y="47" font-family="Georgia, 'Times New Roman', serif" font-size="43" font-weight="bold" letter-spacing="-7">
+    <tspan fill="#f3f0e8">V</tspan><tspan fill="#b83c25">A</tspan>
+  </text>
 </svg>
