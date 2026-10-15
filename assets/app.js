@@ -35,11 +35,9 @@ function populateLanguages() {
   languageSelect.innerHTML = '<option value="">Todas as linguagens</option>' +
     languages.map((language) => `<option value="${escapeHtml(language)}">${escapeHtml(language)}</option>`).join('');
   languageSelect.value = languages.includes(selected) ? selected : '';
-  document.querySelector('#repo-total').textContent = repositories.length;
-  document.querySelector('#language-total').textContent = languages.length;
 }
 
-function renderCard(repo) {
+function renderCard(repo, index) {
   const topics = repo.topics || [];
   const featured = topics.includes('portfolio');
   const description = repo.description || 'Sem descrição.';
@@ -47,7 +45,7 @@ function renderCard(repo) {
   const visibleTopics = topics.slice(0, 3);
   const archived = repo.archived ? '<span class="card-stat">arquivado</span>' : '';
   const fork = repo.fork ? '<span class="card-stat">fork</span>' : '';
-  return `<article class="project-card">
+  return `<article class="project-card"><span class="repo-index">${String(index + 1).padStart(2, '0')}</span>
     <div class="card-top">
       <a class="repo-name" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer">${escapeHtml(repo.name)}</a>
       ${featured ? '<span class="featured-label">✳ destaque</span>' : `<a class="repo-arrow" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer" aria-label="Abrir ${escapeHtml(repo.name)} no GitHub">↗</a>`}
