@@ -792,3 +792,256 @@ select {
     animation:none!important;
   }
 }
+
+/* Capas de projeto e destaque compacto */
+.wordmark {
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-.04em;
+}
+
+.selected {
+  padding:26px 0 30px;
+}
+
+.section-heading {
+  margin-bottom:15px;
+}
+
+.section-heading h2 {
+  font-size:34px;
+}
+
+.section-index {
+  font-size:9px;
+}
+
+.selected-grid {
+  display:block;
+}
+
+.selected-project {
+  display:grid;
+  grid-template-columns:minmax(155px, 25%) 1fr;
+  align-items:center;
+  gap:24px;
+  max-width:780px;
+}
+
+.selected-project:hover .artwork {
+  transform:translateY(-2px);
+}
+
+.artwork {
+  position:relative;
+  display:flex;
+  height:112px;
+  min-width:0;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+  padding:11px 14px;
+  color:var(--art-ink, #f3f0e8);
+  background:var(--art-bg, #292820);
+  isolation:isolate;
+  transition:transform .25s;
+}
+
+.artwork::before,.artwork::after {
+  position:absolute;
+  z-index:-1;
+  content:'';
+  pointer-events:none;
+}
+
+.artwork::before {
+  width:150px;
+  height:150px;
+  right:10%;
+  top:50%;
+  border:1px solid currentColor;
+  border-radius:50%;
+  opacity:.2;
+  transform:translateY(-50%);
+  box-shadow:0 0 0 14px color-mix(in srgb, currentColor 7%, transparent), 0 0 0 34px color-mix(in srgb, currentColor 5%, transparent);
+}
+
+.artwork::after {
+  inset:auto 0 0;
+  height:40%;
+  background:linear-gradient(transparent, color-mix(in srgb, var(--art-ink) 10%, transparent));
+}
+
+.artwork-0 { --art-bg:#343d33; --art-ink:#e5edc7; }
+.artwork-1 { --art-bg:#ded7ca; --art-ink:#443b30; }
+.artwork-2 { --art-bg:#b9c7d0; --art-ink:#263744; }
+.artwork-3 { --art-bg:#a8412e; --art-ink:#f8ead5; }
+.artwork-4 { --art-bg:#dedcb8; --art-ink:#484331; }
+.artwork-5 { --art-bg:#5d6179; --art-ink:#eae8f4; }
+
+.artwork-1::before,.artwork-4::before {
+  right:15%;
+  width:92px;
+  height:120px;
+  border-radius:2px;
+  transform:translateY(-43%) rotate(12deg);
+  box-shadow:-15px 7px 0 -1px var(--art-bg), -16px 7px 0 0 currentColor;
+}
+
+.artwork-2::before,.artwork-5::before {
+  right:12%;
+  width:112px;
+  height:72px;
+  border-radius:2px;
+  transform:translateY(-35%) rotate(-8deg);
+  box-shadow:18px 14px 0 -1px var(--art-bg), 19px 14px 0 0 currentColor, -18px 23px 0 -1px var(--art-bg), -19px 23px 0 0 currentColor;
+}
+
+.artwork-index,.artwork-name,.artwork-mark,.artwork-glyph {
+  position:relative;
+  z-index:1;
+}
+
+.artwork-index,.artwork-name {
+  font:9px var(--mono);
+  letter-spacing:.05em;
+}
+
+.artwork-glyph {
+  position:absolute;
+  right:23%;
+  top:50%;
+  max-width:65%;
+  overflow:hidden;
+  font:italic clamp(32px, 5vw, 60px)/.9 var(--serif);
+  letter-spacing:-.06em;
+  opacity:.95;
+  transform:translate(50%,-50%);
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.artwork-mark {
+  position:absolute;
+  right:14px;
+  top:10px;
+  font-size:15px;
+}
+
+.artwork-compact {
+  width:100%;
+  height:138px;
+  padding:13px 16px;
+}
+
+.selected-copy .project-type {
+  font-size:9px;
+}
+
+.selected-copy h3 {
+  margin:7px 0 5px;
+  font-size:23px;
+  font-weight:500;
+  letter-spacing:-.04em;
+  overflow-wrap:anywhere;
+}
+
+.selected-copy p {
+  margin:0 0 8px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+}
+
+.feature-link {
+  color:var(--accent);
+  font:10px var(--mono);
+}
+
+.project-card {
+  padding:0;
+  border-bottom:1px solid var(--line);
+}
+
+.card-copy {
+  position:relative;
+  padding:20px 0 19px 30px;
+}
+
+.repo-index {
+  top:25px;
+}
+
+@media(max-width:760px) {
+  .selected {
+    padding-block:24px 27px;
+  }
+
+  .selected-project {
+    grid-template-columns:minmax(100px, 30%) 1fr;
+    gap:15px;
+  }
+
+  .artwork {
+    height:100px;
+    padding:9px 11px;
+  }
+
+  .artwork-compact {
+    height:138px;
+  }
+
+  .artwork-index,.artwork-name {
+    font-size:8px;
+  }
+
+  .selected-copy h3 {
+    font-size:20px;
+  }
+
+  .selected-copy p {
+    font-size:11px;
+  }
+}
+
+@media(max-width:420px) {
+  .selected-project {
+    grid-template-columns:100px 1fr;
+    gap:12px;
+  }
+
+  .artwork {
+    height:96px;
+    padding:8px;
+  }
+
+  .artwork-compact {
+    height:120px;
+    padding:10px;
+  }
+
+  .artwork-index,.artwork-name {
+    max-width:80px;
+    overflow:hidden;
+    font-size:7px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .artwork-glyph {
+    right:20%;
+    font-size:30px;
+  }
+
+  .selected-copy .project-type {
+    font-size:8px;
+  }
+
+  .selected-copy h3 {
+    font-size:17px;
+  }
+}
+
+.selected-project .artwork {
+  height:96px;
+}

@@ -2,6 +2,7 @@ const USER = 'alsvinicius';
 const API_URL = `https://api.github.com/users/${USER}/repos?type=owner&sort=updated&per_page=100`;
 
 const grid = document.querySelector('#project-grid');
+const featuredProject = document.querySelector('#featured-project');
 const count = document.querySelector('#result-count');
 const search = document.querySelector('#search');
 const languageSelect = document.querySelector('#language');
@@ -37,6 +38,36 @@ function populateLanguages() {
   languageSelect.value = languages.includes(selected) ? selected : '';
 }
 
+function artworkClass(name) {
+  let hash = 0;
+  for (const char of name) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  return `artwork artwork-${hash % 6}`;
+}
+
+function renderArtwork(repo, compact = false) {
+  const name = escapeHtml(repo.name);
+  const initials = escapeHtml(repo.name.split(/[-_\s]+/).map((part) => part[0]).join('').slice(0, 3).toUpperCase());
+  const language = escapeHtml(repo.language || 'OPEN SOURCE');
+  return `<div class="${artworkClass(repo.name)}${compact ? ' artwork-compact' : ''}" aria-hidden="true">
+    <span class="artwork-index">${language}</span>
+    <span class="artwork-glyph">${initials || '↗'}</span>
+    <span class="artwork-name">${name}</span>
+    <span class="artwork-mark">↗</span>
+  </div>`;
+}
+
+function renderFeatured(repo) {
+  const description = repo.description || 'Sem descrição.';
+  return `<a class="selected-project" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer">
+    ${renderArtwork(repo)}
+    <div class="selected-copy"><span class="project-type">${escapeHtml(repo.language || 'Repositório público')}</span>
+      <h3>${escapeHtml(repo.name)}</h3>
+      <p>${escapeHtml(description)}</p>
+      <span class="feature-link">Ver no GitHub ↗</span>
+    </div>
+  </a>`;
+}
+
 function renderCard(repo, index) {
   const topics = repo.topics || [];
   const featured = topics.includes('portfolio');
@@ -45,21 +76,40 @@ function renderCard(repo, index) {
   const visibleTopics = topics.slice(0, 3);
   const archived = repo.archived ? '<span class="card-stat">arquivado</span>' : '';
   const fork = repo.fork ? '<span class="card-stat">fork</span>' : '';
-  return `<article class="project-card"><span class="repo-index">${String(index + 1).padStart(2, '0')}</span>
-    <div class="card-top">
-      <a class="repo-name" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer">${escapeHtml(repo.name)}</a>
-      ${featured ? '<span class="featured-label">✳ destaque</span>' : `<a class="repo-arrow" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer" aria-label="Abrir ${escapeHtml(repo.name)} no GitHub">↗</a>`}
-    </div>
-    <p class="${descriptionClass}">${escapeHtml(description)}</p>
-    <div class="topic-list">${visibleTopics.map((topic) => `<span class="topic-tag">${escapeHtml(topic)}</span>`).join('')}</div>
-    <div class="card-foot">
-      ${repo.language ? `<span><span class="language-dot"></span>${escapeHtml(repo.language)}</span>` : ''}
-      <span class="card-stat" aria-label="${repo.stargazers_count} estrelas">☆ ${repo.stargazers_count}</span>
-      ${repo.forks_count ? `<span class="card-stat" aria-label="${repo.forks_count} forks">⑂ ${repo.forks_count}</span>` : ''}
-      ${fork}${archived}
-      <span class="card-updated">${relativeDate(repo.pushed_at || repo.updated_at)}</span>
+  return `<article class="project-card">
+    ${renderArtwork(repo, true)}
+    <div class="card-copy"><span class="repo-index">${String(index + 1).padStart(2, '0')}</span>
+      <div class="card-top">
+        <a class="repo-name" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer">${escapeHtml(repo.name)}</a>
+        ${featured ? '<span class="featured-label">✳ destaque</span>' : `<a class="repo-arrow" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer" aria-label="Abrir ${escapeHtml(repo.name)} no GitHub">↗</a>`}
+      </div>
+      <p class="${descriptionClass}">${escapeHtml(description)}</p>
+      <div class="topic-list">${visibleTopics.map((topic) => `<span class="topic-tag">${escapeHtml(topic)}</span>`).join('')}</div>
+      <div class="card-foot">
+        ${repo.language ? `<span><span class="language-dot"></span>${escapeHtml(repo.language)}</span>` : ''}
+        <span class="card-stat" aria-label="${repo.stargazers_count} estrelas">☆ ${repo.stargazers_count}</span>
+        ${repo.forks_count ? `<span class="card-stat" aria-label="${repo.forks_count} forks">⑂ ${repo.forks_count}</span>` : ''}
+        ${fork}${archived}
+        <span class="card-updated">${relativeDate(repo.pushed_at || repo.updated_at)}</span>
+      </div>
     </div>
   </article>`;
+}
+
+function chooseFeatured(items) {
+  if (!items.length) return;
+  if (items.length === 1) return items[0];
+  let previous = '';
+  try { previous = localStorage.getItem('portfolio-last-featured') || ''; } catch {}
+  const choices = items.filter((repo) => repo.name !== previous);
+  const chosen = choices[Math.floor(Math.random() * choices.length)];
+  try { localStorage.setItem('portfolio-last-featured', chosen.name); } catch {}
+  return chosen;
+}
+
+function renderFeaturedProject() {
+  const repo = chooseFeatured(repositories);
+  featuredProject.innerHTML = repo ? renderFeatured(repo) : '';
 }
 
 function render() {
@@ -75,7 +125,7 @@ function render() {
   else if (sortSelect.value === 'name') filtered.sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
   else filtered.sort((a, b) => new Date(b.pushed_at || b.updated_at) - new Date(a.pushed_at || a.updated_at));
 
-  grid.innerHTML = filtered.map(renderCard).join('');
+  grid.innerHTML = filtered.map((repo, index) => renderCard(repo, index)).join('');
   count.textContent = `${filtered.length} ${filtered.length === 1 ? 'repositório' : 'repositórios'}`;
   grid.hidden = filtered.length === 0;
   emptyState.hidden = filtered.length > 0;
@@ -95,6 +145,7 @@ async function loadRepositories() {
     if (!Array.isArray(data)) throw new Error('Resposta inesperada da API do GitHub');
     repositories = data.filter((repo) => !repo.private);
     populateLanguages();
+    renderFeaturedProject();
     loadingState.hidden = true;
     grid.hidden = false;
     render();
