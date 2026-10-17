@@ -1,0 +1,144 @@
+/* Reusable constructions. Everything is opt-in under .instrument-design. */
+.instrument-design *,
+.instrument-design *::before,
+.instrument-design *::after {
+  box-sizing: border-box;
+}
+
+.instrument-design .id-frame {
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-frame);
+  background: linear-gradient(130deg, var(--id-panel), var(--id-body));
+  box-shadow:
+    inset 0 2px 1px var(--id-highlight),
+    var(--id-shadow-ground);
+  padding: 24px;
+}
+
+.instrument-design .id-module {
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-module);
+  background: linear-gradient(150deg, var(--id-panel), var(--id-body));
+  box-shadow:
+    inset 0 1px var(--id-highlight),
+    0 2px 3px var(--id-shadow-contact);
+  padding: 16px;
+}
+
+.instrument-design .id-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--id-target-touch);
+  padding: 10px 18px;
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-key);
+  color: var(--id-ink-primary);
+  background: linear-gradient(150deg, var(--id-panel), var(--id-key));
+  box-shadow: var(--id-shadow-raised);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 120ms,
+    box-shadow 120ms;
+}
+
+.instrument-design .id-key:hover {
+  filter: brightness(1.04);
+}
+
+.instrument-design .id-key:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 1px 2px var(--id-shadow-contact);
+}
+
+.instrument-design .id-key:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.instrument-design .id-key--signal {
+  color: var(--id-ink-on-signal);
+  background: var(--id-signal);
+}
+
+.instrument-design .id-well {
+  color: var(--id-ink-on-well);
+  background: var(--id-well);
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-module);
+  box-shadow:
+    inset 0 3px 5px var(--id-shadow-contact),
+    0 1px var(--id-highlight);
+  padding: 18px;
+}
+
+.instrument-design .id-readout {
+  color: var(--id-ink-on-readout);
+  background: var(--id-readout);
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-module);
+  box-shadow: var(--id-shadow-inset);
+  padding: 20px;
+  font-family: var(--id-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.instrument-design .id-field {
+  color: var(--id-ink-primary);
+  background: var(--id-well);
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-key);
+  box-shadow:
+    inset 0 2px 4px var(--id-shadow-contact),
+    0 1px var(--id-highlight);
+  min-height: 46px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.instrument-design .id-metadata {
+  color: var(--id-ink-secondary);
+  font: var(--id-type-metadata) / 1.5 var(--id-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.035em;
+}
+
+.instrument-design :focus-visible {
+  outline: 3px solid var(--id-focus);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instrument-design *,
+  .instrument-design *::before,
+  .instrument-design *::after {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Density changes working-space rhythm; text and touch controls keep their size. */
+.instrument-design[data-density] .panel {
+  padding: var(--id-density-padding);
+}
+.instrument-design[data-density] .example-grid {
+  gap: var(--id-density-gap);
+}
+.instrument-design[data-density] .table-wrap tbody tr {
+  min-height: var(--id-density-row);
+}
+.instrument-design[data-density] .table-wrap th,
+.instrument-design[data-density] .table-wrap td {
+  padding-block: calc((var(--id-density-row) - 24px) / 2);
+}
+.instrument-design[data-density="compact"] .board .stack {
+  gap: var(--id-density-gap);
+}
+.instrument-design[data-density="compact"] .days {
+  gap: 4px;
+  padding: 8px;
+}

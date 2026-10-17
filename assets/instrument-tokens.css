@@ -1,0 +1,156 @@
+/* Shared semantic and material roles. Apply them on an explicit root. */
+.instrument-design {
+  color-scheme: light;
+  font-family: var(--id-font-sans);
+  color: var(--id-ink-primary);
+  background: var(--id-canvas);
+
+  /* Chalk is the warm mineral default. */
+  --id-canvas: #e9e7e1;
+  --id-body: #d8d6ce;
+  --id-panel: #f1efe8;
+  --id-key: #e3e1d9;
+  --id-well: #e0ded5;
+  --id-readout: #252e2f;
+
+  --id-ink-primary: #25282a;
+  --id-ink-secondary: #505456;
+  --id-ink-on-body: #25282a;
+  --id-ink-on-panel: #25282a;
+  --id-ink-on-well: #25282a;
+  --id-ink-on-readout: #f2f1e9;
+  --id-ink-readout-muted: #c6ceca;
+  --id-ink-on-signal: #ffffff;
+
+  --id-border: #6c7071;
+  --id-border-quiet: #787c7d;
+  --id-signal: #c4411f;
+  --id-focus: #126575;
+  --id-status-error: #a12621;
+  --id-status-success: #246249;
+
+  --id-data-1: #3c626b;
+  --id-data-2: #8a5b3b;
+  --id-data-3: #68794d;
+  --id-data-4: #80566f;
+  --id-data-on-well: #315f52;
+  --id-data-on-readout: #c6d0c9;
+  --id-data-highlight: #b63b1d;
+  --id-chart-grid: #787c7d;
+  --id-chart-label: #25282a;
+
+  --id-highlight: rgb(255 255 255 / 65%);
+  --id-shadow-contact: rgb(20 23 25 / 18%);
+  --id-shadow-ground:
+    0 12px 22px var(--id-shadow-contact), 0 2px 2px var(--id-shadow-contact);
+  --id-shadow-raised:
+    inset 0 2px 1px var(--id-highlight), 0 3px 3px var(--id-shadow-contact);
+  --id-shadow-inset:
+    inset 0 3px 7px rgb(0 0 0 / 35%), 0 1px var(--id-highlight);
+
+  --id-font-sans: Arial, Helvetica, sans-serif;
+  --id-font-mono: ui-monospace, "DejaVu Sans Mono", monospace;
+  --id-space-unit: 4px;
+  --id-radius-frame: 16px;
+  --id-radius-module: 6px;
+  --id-radius-key: 4px;
+  --id-target-min: 24px;
+  --id-target-touch: 44px;
+  --id-type-body: 16px;
+  --id-type-metadata: 12px;
+  --id-density-gap: 16px;
+  --id-density-padding: 20px;
+  --id-density-row: 48px;
+}
+
+.instrument-design[data-theme="graphite"] {
+  color-scheme: dark;
+  --id-canvas: #151719;
+  --id-body: #25282b;
+  --id-panel: #34383b;
+  --id-key: #42474a;
+  --id-well: #171d1f;
+  --id-readout: #101416;
+
+  --id-ink-primary: #f2f1e9;
+  --id-ink-secondary: #c1c5c3;
+  --id-ink-on-body: #f2f1e9;
+  --id-ink-on-panel: #f2f1e9;
+  --id-ink-on-well: #f2f1e9;
+  --id-ink-on-readout: #f2f1e9;
+  --id-ink-readout-muted: #c1c5c3;
+  --id-ink-on-signal: #151719;
+
+  --id-border: #858b8f;
+  --id-border-quiet: #70777b;
+  --id-signal: #f2a36a;
+  --id-focus: #8fd6e0;
+  --id-status-error: #ffb5a5;
+  --id-status-success: #a0d1b9;
+
+  --id-data-1: #88c8d3;
+  --id-data-2: #f2a36a;
+  --id-data-3: #b4cb80;
+  --id-data-4: #d6a8c6;
+  --id-data-on-well: #88c8d3;
+  --id-data-on-readout: #f2a36a;
+  --id-data-highlight: #f2a36a;
+  --id-chart-grid: #70777b;
+  --id-chart-label: #f2f1e9;
+
+  --id-highlight: rgb(255 255 255 / 13%);
+  --id-shadow-contact: rgb(0 0 0 / 36%);
+  --id-shadow-inset:
+    inset 0 3px 7px rgb(0 0 0 / 48%), 0 1px var(--id-highlight);
+}
+
+.instrument-design[data-theme="workshop"] {
+  --id-canvas: #e8e1ce;
+  --id-body: #d4c7a7;
+  --id-panel: #f1e8d0;
+  --id-key: #e6d9b9;
+  --id-well: #e2d8bc;
+  --id-readout: #193c33;
+
+  --id-ink-primary: #173b32;
+  --id-ink-secondary: #34483f;
+  --id-ink-on-body: #173b32;
+  --id-ink-on-panel: #173b32;
+  --id-ink-on-well: #173b32;
+  --id-ink-on-readout: #f2f1e9;
+  --id-ink-readout-muted: #c6d0c9;
+  --id-ink-on-signal: #ffffff;
+
+  --id-border: #65695f;
+  --id-border-quiet: #747b68;
+  --id-signal: #b63b1d;
+  --id-focus: #126575;
+  --id-status-error: #a12621;
+  --id-status-success: #246249;
+
+  --id-data-1: #315f52;
+  --id-data-2: #a5532f;
+  --id-data-3: #697844;
+  --id-data-4: #74546d;
+  --id-data-on-well: #315f52;
+  --id-data-on-readout: #c6d0c9;
+  --id-data-highlight: #b63b1d;
+  --id-chart-grid: #747b68;
+  --id-chart-label: #173b32;
+
+  --id-highlight: rgb(255 255 255 / 58%);
+  --id-shadow-contact: rgb(58 56 44 / 27%);
+  --id-shadow-inset:
+    inset 0 3px 7px rgb(0 0 0 / 28%), 0 1px var(--id-highlight);
+}
+
+.instrument-design[data-density="comfortable"] {
+  --id-density-gap: 16px;
+  --id-density-padding: 20px;
+  --id-density-row: 48px;
+}
+.instrument-design[data-density="compact"] {
+  --id-density-gap: 8px;
+  --id-density-padding: 12px;
+  --id-density-row: 40px;
+}

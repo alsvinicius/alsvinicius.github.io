@@ -1,4 +1,7 @@
-PAGE_PORT ?= 4178
+-include .project-gallery.mk
+
+# Accept generic assignments from older Project Gallery catalogues.
+PAGE_PORT ?= $(if $(PORT),$(PORT),4178)
 RUNTIME_DIR := .runtime
 PID_FILE := $(RUNTIME_DIR)/server.pid
 LOG_FILE := $(RUNTIME_DIR)/server.log

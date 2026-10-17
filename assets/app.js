@@ -56,12 +56,12 @@ function artworkScene(theme) {
   return scenes[theme];
 }
 
-function renderArtwork(repo, compact = false) {
+function renderArtwork(repo) {
   const name = escapeHtml(repo.name);
   const language = escapeHtml(repo.language || 'OPEN SOURCE');
   const className = artworkClass(repo.name);
   const theme = Number(className.match(/artwork-(\d+)/)[1]);
-  return `<div class="${className}${compact ? ' artwork-compact' : ''}" aria-hidden="true">
+  return `<div class="${className}" aria-hidden="true">
     <span class="artwork-index">${language}</span>
     ${artworkScene(theme)}
     <span class="artwork-name">${name}</span>
@@ -76,7 +76,7 @@ function renderFeatured(repo) {
     <div class="selected-copy"><span class="project-type">${escapeHtml(repo.language || 'Repositório público')}</span>
       <h3>${escapeHtml(repo.name)}</h3>
       <p>${escapeHtml(description)}</p>
-      <span class="feature-link">Ver no GitHub ↗</span>
+      <span class="feature-link">Ver projeto no GitHub <span aria-hidden="true">↗</span></span>
     </div>
   </a>`;
 }
@@ -90,7 +90,6 @@ function renderCard(repo, index) {
   const archived = repo.archived ? '<span class="card-stat">arquivado</span>' : '';
   const fork = repo.fork ? '<span class="card-stat">fork</span>' : '';
   return `<article class="project-card">
-    ${renderArtwork(repo, true)}
     <div class="card-copy"><span class="repo-index">${String(index + 1).padStart(2, '0')}</span>
       <div class="card-top">
         <a class="repo-name" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noreferrer">${escapeHtml(repo.name)}</a>
@@ -132,6 +131,31 @@ function chooseFeatured(items) {
 
 function renderFeaturedProject() {
   featuredProject.innerHTML = chooseFeatured(repositories).map(renderFeatured).join('');
+  document.querySelector('#featured-status').hidden = repositories.length > 0;
+  document.querySelector('#featured-status').textContent = 'Nenhum repositório público disponível.';
+}
+
+function renderOverview() {
+  const languages = new Map();
+  for (const repo of repositories) {
+    if (repo.language) languages.set(repo.language, (languages.get(repo.language) || 0) + 1);
+  }
+  const sorted = [...languages.entries()].sort((a, b) => b[1] - a[1]);
+  const groups = sorted.slice(0, 3);
+  const otherCount = sorted.slice(3).reduce((sum, [, total]) => sum + total, 0);
+  if (otherCount) groups.push(['Outras', otherCount]);
+  const colors = ['#c6d0c9', '#9baca4', '#788f84', '#688579'];
+  document.querySelector('#repo-total').textContent = String(repositories.length).padStart(2, '0');
+  document.querySelector('#language-total').textContent = languages.size;
+  document.querySelector('#star-total').textContent = repositories.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+  document.querySelector('#language-meter').innerHTML = groups.map(([, total]) => `<span style="flex:${total}"></span>`).join('');
+  document.querySelector('#language-legend').innerHTML = groups.length
+    ? groups.map(([name, total], index) => `<span class="legend-item"><i class="legend-dot" style="--dot-color:${colors[index]}" aria-hidden="true"></i>${escapeHtml(name)} · ${total}</span>`).join('')
+    : '<span>Nenhuma linguagem informada</span>';
+  document.querySelector('#api-status').textContent = 'Dados carregados do GitHub';
+  const readout = document.querySelector('#overview-readout');
+  readout.dataset.state = 'ready';
+  readout.setAttribute('aria-busy', 'false');
 }
 
 function render() {
@@ -160,6 +184,9 @@ async function loadRepositories() {
   grid.hidden = true;
   emptyState.hidden = true;
   grid.setAttribute('aria-busy', 'true');
+  document.querySelector('#overview-readout').setAttribute('aria-busy', 'true');
+  document.querySelector('#overview-readout').removeAttribute('data-state');
+  document.querySelector('#api-status').textContent = 'Conectando ao GitHub';
   try {
     const response = await fetch(API_URL, { headers: { Accept: 'application/vnd.github+json' } });
     if (!response.ok) throw new Error(`GitHub API respondeu ${response.status}`);
@@ -168,6 +195,7 @@ async function loadRepositories() {
     repositories = data.filter((repo) => !repo.private);
     populateLanguages();
     renderFeaturedProject();
+    renderOverview();
     loadingState.hidden = true;
     grid.hidden = false;
     render();
@@ -176,6 +204,11 @@ async function loadRepositories() {
     grid.setAttribute('aria-busy', 'false');
     count.textContent = 'Não foi possível carregar';
     loadError.hidden = false;
+    document.querySelector('#featured-status').hidden = false;
+    document.querySelector('#featured-status').textContent = 'A seleção estará disponível quando a conexão com o GitHub voltar.';
+    document.querySelector('#api-status').textContent = 'Conexão indisponível';
+    document.querySelector('#overview-readout').dataset.state = 'error';
+    document.querySelector('#overview-readout').setAttribute('aria-busy', 'false');
   }
 }
 
