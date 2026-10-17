@@ -1,5 +1,5 @@
 /* Shared semantic and material roles. Apply them on an explicit root. */
-.instrument-design {
+.portfolio-theme {
   color-scheme: light;
   font-family: var(--id-font-sans);
   color: var(--id-ink-primary);
@@ -63,7 +63,7 @@
   --id-density-row: 48px;
 }
 
-.instrument-design[data-theme="graphite"] {
+.portfolio-theme[data-theme="graphite"] {
   color-scheme: dark;
   --id-canvas: #151719;
   --id-body: #25282b;
@@ -104,7 +104,7 @@
     inset 0 3px 7px rgb(0 0 0 / 48%), 0 1px var(--id-highlight);
 }
 
-.instrument-design[data-theme="workshop"] {
+.portfolio-theme[data-theme="workshop"] {
   --id-canvas: #e8e1ce;
   --id-body: #d4c7a7;
   --id-panel: #f1e8d0;
@@ -144,12 +144,12 @@
     inset 0 3px 7px rgb(0 0 0 / 28%), 0 1px var(--id-highlight);
 }
 
-.instrument-design[data-density="comfortable"] {
+.portfolio-theme[data-density="comfortable"] {
   --id-density-gap: 16px;
   --id-density-padding: 20px;
   --id-density-row: 48px;
 }
-.instrument-design[data-density="compact"] {
+.portfolio-theme[data-density="compact"] {
   --id-density-gap: 8px;
   --id-density-padding: 12px;
   --id-density-row: 40px;

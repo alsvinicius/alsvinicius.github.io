@@ -32,10 +32,4 @@ O workflow em `.github/workflows/pages.yml` publica o conteúdo estático a cada
 push para `main`. GitHub Pages já está configurado para usar **GitHub Actions**
 em `https://alsvinicius.github.io/`.
 
-## Direção visual
-
-Instrument Design, tema Chalk: corpo mineral fosco, módulos elevados,
-campos rebaixados e ações em vermelhão. Os papéis de cor e material ficam em
-`assets/instrument-tokens.css`; as construções reutilizáveis, em
-`assets/instrument-components.css`; a composição do portfólio, em `assets/styles.css`.
 O painel do GitHub usa contagens reais da mesma consulta que alimenta os projetos.

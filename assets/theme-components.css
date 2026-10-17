@@ -1,11 +1,11 @@
-/* Reusable constructions. Everything is opt-in under .instrument-design. */
-.instrument-design *,
-.instrument-design *::before,
-.instrument-design *::after {
+/* Shared interface components. */
+.portfolio-theme *,
+.portfolio-theme *::before,
+.portfolio-theme *::after {
   box-sizing: border-box;
 }
 
-.instrument-design .id-frame {
+.portfolio-theme .id-frame {
   border: 1px solid var(--id-border);
   border-radius: var(--id-radius-frame);
   background: linear-gradient(130deg, var(--id-panel), var(--id-body));
@@ -15,7 +15,7 @@
   padding: 24px;
 }
 
-.instrument-design .id-module {
+.portfolio-theme .id-module {
   border: 1px solid var(--id-border);
   border-radius: var(--id-radius-module);
   background: linear-gradient(150deg, var(--id-panel), var(--id-body));
@@ -25,7 +25,7 @@
   padding: 16px;
 }
 
-.instrument-design .id-key {
+.portfolio-theme .id-key {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -45,27 +45,27 @@
     box-shadow 120ms;
 }
 
-.instrument-design .id-key:hover {
+.portfolio-theme .id-key:hover {
   filter: brightness(1.04);
 }
 
-.instrument-design .id-key:active {
+.portfolio-theme .id-key:active {
   transform: translateY(1px);
   box-shadow: inset 0 1px 2px var(--id-shadow-contact);
 }
 
-.instrument-design .id-key:disabled {
+.portfolio-theme .id-key:disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
 }
 
-.instrument-design .id-key--signal {
+.portfolio-theme .id-key--signal {
   color: var(--id-ink-on-signal);
   background: var(--id-signal);
 }
 
-.instrument-design .id-well {
+.portfolio-theme .id-well {
   color: var(--id-ink-on-well);
   background: var(--id-well);
   border: 1px solid var(--id-border);
@@ -76,7 +76,7 @@
   padding: 18px;
 }
 
-.instrument-design .id-readout {
+.portfolio-theme .id-readout {
   color: var(--id-ink-on-readout);
   background: var(--id-readout);
   border: 1px solid var(--id-border);
@@ -87,7 +87,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-.instrument-design .id-field {
+.portfolio-theme .id-field {
   color: var(--id-ink-primary);
   background: var(--id-well);
   border: 1px solid var(--id-border);
@@ -100,45 +100,45 @@
   font: inherit;
 }
 
-.instrument-design .id-metadata {
+.portfolio-theme .id-metadata {
   color: var(--id-ink-secondary);
   font: var(--id-type-metadata) / 1.5 var(--id-font-mono);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.035em;
 }
 
-.instrument-design :focus-visible {
+.portfolio-theme :focus-visible {
   outline: 3px solid var(--id-focus);
   outline-offset: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .instrument-design *,
-  .instrument-design *::before,
-  .instrument-design *::after {
+  .portfolio-theme *,
+  .portfolio-theme *::before,
+  .portfolio-theme *::after {
     transition: none;
     animation: none;
   }
 }
 
 /* Density changes working-space rhythm; text and touch controls keep their size. */
-.instrument-design[data-density] .panel {
+.portfolio-theme[data-density] .panel {
   padding: var(--id-density-padding);
 }
-.instrument-design[data-density] .example-grid {
+.portfolio-theme[data-density] .example-grid {
   gap: var(--id-density-gap);
 }
-.instrument-design[data-density] .table-wrap tbody tr {
+.portfolio-theme[data-density] .table-wrap tbody tr {
   min-height: var(--id-density-row);
 }
-.instrument-design[data-density] .table-wrap th,
-.instrument-design[data-density] .table-wrap td {
+.portfolio-theme[data-density] .table-wrap th,
+.portfolio-theme[data-density] .table-wrap td {
   padding-block: calc((var(--id-density-row) - 24px) / 2);
 }
-.instrument-design[data-density="compact"] .board .stack {
+.portfolio-theme[data-density="compact"] .board .stack {
   gap: var(--id-density-gap);
 }
-.instrument-design[data-density="compact"] .days {
+.portfolio-theme[data-density="compact"] .days {
   gap: 4px;
   padding: 8px;
 }
