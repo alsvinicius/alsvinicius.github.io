@@ -1,5 +1,90 @@
-const USER = 'alsvinicius';
-const API_URL = `https://api.github.com/users/${USER}/repos?type=owner&sort=updated&per_page=100`;
+// Catálogo mantido manualmente para não depender da API do GitHub no navegador.
+const repositories = [
+  {
+    name: 'public-docs',
+    description: 'Documentação pública — estudos de agentic commerce e afins',
+    language: 'TypeScript',
+    html_url: 'https://github.com/alsvinicius/public-docs',
+    topics: [],
+    stargazers_count: 0,
+    forks_count: 0,
+    archived: false,
+    fork: false,
+    pushed_at: '2026-10-28T17:06:04Z'
+  },
+  {
+    name: 'learningzone',
+    description: 'Local-first, offline-capable study app for structured learning catalogs and progress tracking',
+    language: 'JavaScript',
+    html_url: 'https://github.com/alsvinicius/learningzone',
+    topics: ['learning', 'offline-first', 'static-site', 'study'],
+    stargazers_count: 0,
+    forks_count: 0,
+    archived: false,
+    fork: false,
+    pushed_at: '2026-10-28T02:28:07Z'
+  },
+  {
+    name: 'ai-studioeditor',
+    description: 'Local-first post-production studio for OBS recordings: transcription, reviewable edits, captions, exports, and private YouTube uploads.',
+    language: 'Python',
+    html_url: 'https://github.com/alsvinicius/ai-studioeditor',
+    topics: ['portfolio'],
+    stargazers_count: 0,
+    forks_count: 0,
+    archived: false,
+    fork: false,
+    pushed_at: '2026-10-28T02:26:38Z'
+  },
+  {
+    name: 'skills',
+    description: 'Reusable product discovery and MVP implementation workflow for software projects',
+    language: null,
+    html_url: 'https://github.com/alsvinicius/skills',
+    topics: ['codex', 'product-development', 'skills', 'workflow'],
+    stargazers_count: 0,
+    forks_count: 0,
+    archived: false,
+    fork: false,
+    pushed_at: '2026-10-28T02:24:36Z'
+  },
+  {
+    name: 'alsvinicius.github.io',
+    description: null,
+    language: 'CSS',
+    html_url: 'https://github.com/alsvinicius/alsvinicius.github.io',
+    topics: [],
+    stargazers_count: 0,
+    forks_count: 0,
+    archived: false,
+    fork: false,
+    pushed_at: '2026-10-28T01:54:51Z'
+  },
+  {
+    name: 'commandscheduler',
+    description: 'Local-first scheduler for terminal commands with a CLI, REST API, and web dashboard',
+    language: 'Rust',
+    html_url: 'https://github.com/alsvinicius/commandscheduler',
+    topics: ['automation', 'cli', 'rust', 'scheduler'],
+    stargazers_count: 0,
+    forks_count: 0,
+    archived: false,
+    fork: false,
+    pushed_at: '2026-10-27T21:57:10Z'
+  },
+  {
+    name: 'projectgallery',
+    description: 'A local project gallery for discovering, reviewing, and managing projects with unique service ports.',
+    language: 'TypeScript',
+    html_url: 'https://github.com/alsvinicius/projectgallery',
+    topics: [],
+    stargazers_count: 0,
+    forks_count: 0,
+    archived: false,
+    fork: false,
+    pushed_at: '2026-10-17T23:02:57Z'
+  }
+];
 
 const grid = document.querySelector('#project-grid');
 const featuredProject = document.querySelector('#featured-project');
@@ -8,9 +93,7 @@ const search = document.querySelector('#search');
 const languageSelect = document.querySelector('#language');
 const sortSelect = document.querySelector('#sort');
 const emptyState = document.querySelector('#empty-state');
-const loadError = document.querySelector('#load-error');
 const loadingState = document.querySelector('#loading-state');
-let repositories = [];
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
@@ -152,7 +235,7 @@ function renderOverview() {
   document.querySelector('#language-legend').innerHTML = groups.length
     ? groups.map(([name, total], index) => `<span class="legend-item"><i class="legend-dot" style="--dot-color:${colors[index]}" aria-hidden="true"></i>${escapeHtml(name)} · ${total}</span>`).join('')
     : '<span>Nenhuma linguagem informada</span>';
-  document.querySelector('#api-status').textContent = 'Dados carregados do GitHub';
+  document.querySelector('#api-status').textContent = 'Catálogo local';
   const readout = document.querySelector('#overview-readout');
   readout.dataset.state = 'ready';
   readout.setAttribute('aria-busy', 'false');
@@ -178,44 +261,9 @@ function render() {
   grid.setAttribute('aria-busy', 'false');
 }
 
-async function loadRepositories() {
-  loadingState.hidden = false;
-  loadError.hidden = true;
-  grid.hidden = true;
-  emptyState.hidden = true;
-  grid.setAttribute('aria-busy', 'true');
-  document.querySelector('#overview-readout').setAttribute('aria-busy', 'true');
-  document.querySelector('#overview-readout').removeAttribute('data-state');
-  document.querySelector('#api-status').textContent = 'Conectando ao GitHub';
-  try {
-    const response = await fetch(API_URL, { headers: { Accept: 'application/vnd.github+json' } });
-    if (!response.ok) throw new Error(`GitHub API respondeu ${response.status}`);
-    const data = await response.json();
-    if (!Array.isArray(data)) throw new Error('Resposta inesperada da API do GitHub');
-    repositories = data.filter((repo) => !repo.private);
-    populateLanguages();
-    renderFeaturedProject();
-    renderOverview();
-    loadingState.hidden = true;
-    grid.hidden = false;
-    render();
-  } catch (error) {
-    loadingState.hidden = true;
-    grid.setAttribute('aria-busy', 'false');
-    count.textContent = 'Não foi possível carregar';
-    loadError.hidden = false;
-    document.querySelector('#featured-status').hidden = false;
-    document.querySelector('#featured-status').textContent = 'A seleção estará disponível quando a conexão com o GitHub voltar.';
-    document.querySelector('#api-status').textContent = 'Conexão indisponível';
-    document.querySelector('#overview-readout').dataset.state = 'error';
-    document.querySelector('#overview-readout').setAttribute('aria-busy', 'false');
-  }
-}
-
 search.addEventListener('input', render);
 languageSelect.addEventListener('change', render);
 sortSelect.addEventListener('change', render);
-document.querySelector('#retry').addEventListener('click', loadRepositories);
 document.querySelector('#reset-filters').addEventListener('click', () => {
   search.value = '';
   languageSelect.value = '';
@@ -233,4 +281,9 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-loadRepositories();
+populateLanguages();
+renderFeaturedProject();
+renderOverview();
+loadingState.hidden = true;
+grid.hidden = false;
+render();

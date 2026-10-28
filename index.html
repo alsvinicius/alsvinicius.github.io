@@ -7,7 +7,6 @@
     <meta name="description" content="Aplicações locais, ferramentas de terminal e projetos públicos de Vinicius Alexandre." />
     <title>Vinicius Alexandre · projetos</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=3" />
-    <link rel="preconnect" href="https://api.github.com" />
     <link rel="stylesheet" href="assets/theme-tokens.css" />
     <link rel="stylesheet" href="assets/theme-components.css" />
     <link rel="stylesheet" href="assets/styles.css" />
@@ -36,14 +35,14 @@
             </div>
           </div>
           <aside class="overview" aria-labelledby="overview-title">
-            <div class="module-heading"><span id="overview-title">NO GITHUB</span><span class="profile-id">@alsvinicius</span></div>
+            <div class="module-heading"><span id="overview-title">PROJETOS</span><span class="profile-id">@alsvinicius</span></div>
             <div class="overview-readout" aria-busy="true" id="overview-readout">
               <div class="readout-heading"><span>Repositórios públicos</span><span class="readout-mark" aria-hidden="true">↗</span></div>
               <div class="overview-total" id="repo-total">—</div>
               <div class="overview-metrics"><span><b id="language-total">—</b> linguagens</span><span><b id="star-total">—</b> estrelas</span></div>
               <div class="language-meter" id="language-meter" aria-hidden="true"></div>
-              <div class="language-legend" id="language-legend"><span>Aguardando dados do GitHub…</span></div>
-              <div class="readout-footer"><span id="api-status">Conectando ao GitHub</span><span class="status-led" aria-hidden="true"></span></div>
+              <div class="language-legend" id="language-legend"><span>Carregando catálogo…</span></div>
+              <div class="readout-footer"><span id="api-status">Catálogo local</span><span class="status-led" aria-hidden="true"></span></div>
             </div>
           </aside>
         </section>
@@ -58,7 +57,7 @@
         <section class="projects" id="repositorios" aria-labelledby="projects-title">
           <div class="section-heading">
             <div class="section-title"><span class="section-number">02</span><h2 id="projects-title">O arquivo completo</h2></div>
-            <p class="result-count" id="result-count" role="status">Carregando do GitHub…</p>
+            <p class="result-count" id="result-count" role="status">Carregando projetos…</p>
           </div>
           <div class="toolbar">
             <label class="search-wrap"><span class="field-label">BUSCAR PROJETO</span><span class="search-field"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search" type="search" placeholder="Nome, descrição ou tópico…" autocomplete="off" /><kbd aria-hidden="true">/</kbd></span></label>
@@ -67,8 +66,7 @@
           </div>
           <div class="project-grid" id="project-grid" aria-live="polite" aria-busy="true"></div>
           <div class="empty-state" id="empty-state" hidden><span class="empty-symbol" aria-hidden="true">∅</span><p>Nenhum projeto encontrado com esses filtros.</p><button class="id-key" id="reset-filters" type="button">Limpar filtros</button></div>
-          <div class="load-error" id="load-error" hidden><p>Não consegui carregar os projetos agora.</p><button class="id-key" id="retry" type="button">Tentar novamente</button><span>Os repositórios estão no <a href="https://github.com/alsvinicius?tab=repositories">perfil do GitHub ↗</a>.</span></div>
-          <div class="loading-state" id="loading-state"><span class="loader" aria-hidden="true"></span> Buscando repositórios públicos…</div>
+          <div class="loading-state" id="loading-state"><span class="loader" aria-hidden="true"></span> Carregando projetos…</div>
         </section>
       </main>
       <footer class="footer"><span>© <span id="year"></span> Vinicius Alexandre</span><a class="back-top" href="#inicio">Voltar ao topo ↑</a></footer>

@@ -1,8 +1,9 @@
-# Portfolio GitHub
+# Portfolio de projetos
 
-Página estática em português para explorar os repositórios públicos de
-[`alsvinicius`](https://github.com/alsvinicius). A lista vem da API pública do
-GitHub; nenhum token é enviado ao navegador ou guardado no projeto.
+Página estática em português com uma seleção manual de projetos públicos de
+[`alsvinicius`](https://github.com/alsvinicius). O catálogo fica em
+`assets/app.js`; a página não consulta a API do GitHub. Para incluir, remover ou
+atualizar um projeto, edite a lista `repositories` nesse arquivo.
 
 ## Rodar localmente
 
@@ -18,18 +19,15 @@ O servidor usa `127.0.0.1:4178` por padrão. A galeria pode fornecer outra porta
 pela variável `PAGE_PORT` (ou `PORT`, em catálogos anteriores).
 O arquivo local `.project-gallery.mk` tem prioridade sobre a porta padrão.
 
-## Destaques
+## Catálogo
 
-Todos os repositórios públicos do perfil aparecem na grade. Para destacar um
-projeto, adicione o tópico `portfolio` nas configurações do repositório no
-GitHub. O link “Explorar projetos” mostra primeiro essa seleção quando houver
-algum destaque. Busca, filtro por linguagem e ordenação são aplicados no
-navegador.
+Os projetos, descrições, linguagens, tópicos, contagens e datas de atualização
+são dados locais e devem ser mantidos manualmente. Busca, filtro por linguagem,
+ordenação, destaques e contagens são calculados no navegador a partir dessa
+lista.
 
 ## Publicar no GitHub Pages
 
 O workflow em `.github/workflows/pages.yml` publica o conteúdo estático a cada
 push para `main`. GitHub Pages já está configurado para usar **GitHub Actions**
 em `https://alsvinicius.github.io/`.
-
-O painel do GitHub usa contagens reais da mesma consulta que alimenta os projetos.
