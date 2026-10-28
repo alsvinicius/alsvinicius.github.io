@@ -50,6 +50,11 @@
 
   --id-font-sans: Arial, Helvetica, sans-serif;
   --id-font-mono: ui-monospace, "DejaVu Sans Mono", monospace;
+  --id-ink-on-key: var(--id-ink-primary);
+  --id-ink-key-muted: var(--id-ink-secondary);
+  --id-ink-well-muted: var(--id-ink-secondary);
+  --id-link: #a33219;
+  --id-link-on-readout: #ffc08e;
   --id-space-unit: 4px;
   --id-radius-frame: 16px;
   --id-radius-module: 6px;
@@ -84,6 +89,7 @@
   --id-border: #858b8f;
   --id-border-quiet: #70777b;
   --id-signal: #f2a36a;
+  --id-link: #f2a36a;
   --id-focus: #8fd6e0;
   --id-status-error: #ffb5a5;
   --id-status-success: #a0d1b9;
@@ -124,6 +130,7 @@
   --id-border: #65695f;
   --id-border-quiet: #747b68;
   --id-signal: #b63b1d;
+  --id-link: #963018;
   --id-focus: #126575;
   --id-status-error: #a12621;
   --id-status-success: #246249;
