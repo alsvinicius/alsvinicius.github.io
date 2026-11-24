@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e9e7e1" />
+    <meta name="description" content="An open-source agent skill that takes a product from idea to tested MVP and keeps requirements, decisions, plans and docs in sync with the code." />
+    <title>product-dev-workflow · Vinicius Alexandre</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=3" />
+    <link rel="alternate" hreflang="en" href="?lang=en" />
+    <link rel="alternate" hreflang="pt-BR" href="?lang=pt-BR" />
+    <link rel="alternate" hreflang="zh-Hans" href="?lang=zh-CN" />
+    <link rel="alternate" hreflang="ja" href="?lang=ja" />
+    <link rel="alternate" hreflang="es" href="?lang=es" />
+    <link rel="alternate" hreflang="fr" href="?lang=fr" />
+    <link rel="stylesheet" href="../../assets/theme-tokens.css" />
+    <link rel="stylesheet" href="../../assets/theme-components.css" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <link rel="stylesheet" href="page.css" />
+    <script src="i18n.js" defer></script>
+    <script src="page.js" defer></script>
+  </head>
+  <body class="portfolio-theme" data-theme="chalk">
+    <a class="skip-link id-key" href="#how" data-i18n="skip">Skip to content</a>
+    <div class="site-frame">
+      <header class="topbar">
+        <a class="wordmark" href="../../" aria-label="Vinicius Alexandre" data-i18n-attr="aria-label:nav.home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>Vinicius Alexandre</span>
+        </a>
+        <div class="page-tools">
+          <label class="tool-field"><span class="field-label" data-i18n="lang.label">Language</span>
+            <select id="lang">
+              <option value="en">English</option>
+              <option value="pt-BR">Português (BR)</option>
+              <option value="zh-CN">简体中文</option>
+              <option value="ja">日本語</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+            </select>
+          </label>
+          <div class="tool-field" role="group" aria-labelledby="theme-label">
+            <span class="field-label" id="theme-label" data-i18n="theme.label">Theme</span>
+            <div class="theme-keys">
+              <button class="id-key" type="button" data-theme-key="chalk" aria-pressed="true">Chalk</button>
+              <button class="id-key" type="button" data-theme-key="graphite" aria-pressed="false">Graphite</button>
+              <button class="id-key" type="button" data-theme-key="workshop" aria-pressed="false">Workshop</button>
+            </div>
+          </div>
+          <a class="id-key github-key" href="https://github.com/alsvinicius/skills" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="intro-title">
+          <div class="intro-copy">
+            <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Open-source agent skill · MIT</span></p>
+            <h1 class="page-title" id="intro-title"><span data-i18n="hero.t1">Specs that stay</span> <span data-i18n="hero.t2">true to the code.</span></h1>
+            <p class="intro-description" data-i18n="hero.desc">product-dev-workflow guides a coding agent from a product idea to a tested MVP and the full project, and keeps the PRD, decisions, plan and docs in sync with every change.</p>
+            <div class="intro-actions">
+              <a class="id-key id-key--signal" href="#how"><span data-i18n="hero.cta1">See how it works</span> <span aria-hidden="true">↓</span></a>
+              <a class="id-key" href="https://github.com/alsvinicius/skills/tree/main/skills/product-dev-workflow" target="_blank" rel="noreferrer"><span data-i18n="hero.cta2">View on GitHub</span> <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <aside class="overview" aria-labelledby="snap-title">
+            <div class="module-heading"><span id="snap-title" data-i18n="snap.title">SKILL SNAPSHOT</span><span class="profile-id">product-dev-workflow</span></div>
+            <div class="overview-readout">
+              <div class="readout-heading"><span data-i18n="snap.main">workflow steps</span></div>
+              <div class="overview-total">12</div>
+              <dl class="snap-list">
+                <div><dt data-i18n="snap.refs">guides</dt><dd>25</dd></div>
+                <div><dt data-i18n="snap.tpl">templates</dt><dd>21</dd></div>
+                <div><dt data-i18n="snap.evals">eval cases</dt><dd>44</dd></div>
+                <div><dt data-i18n="snap.caps">capabilities</dt><dd>19</dd></div>
+              </dl>
+              <div class="readout-footer"><span data-i18n="snap.note">Counted from the repository, 2026-11-24.</span><span class="status-led" aria-hidden="true"></span></div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="band" id="how" aria-labelledby="how-title">
+          <div class="section-heading">
+            <div class="section-title"><span class="section-number">01</span><h2 id="how-title" data-i18n="s1.title">How it works</h2></div>
+            <span class="section-index" data-i18n="s1.index">12 STEPS · 3 PHASES</span>
+          </div>
+          <p class="lede" data-i18n="s1.intro">Use any step on its own or follow the whole path. Each step reads the artifacts before it, writes one focused set of documents, and ends by recommending what comes next.</p>
+          <div class="pipeline">
+            <div class="plates">
+              <div class="id-module plate" role="group" aria-labelledby="ph-define">
+                <h3 class="plate-title" id="ph-define" data-i18n="phase.define">DEFINE</h3>
+                <div class="key-row">
+                  <button class="id-key step-key" type="button" data-step="brownfield-discovery" aria-pressed="false">/brownfield-discovery</button>
+                  <button class="id-key step-key" type="button" data-step="prd-generator" aria-pressed="true">/prd-generator</button>
+                  <button class="id-key step-key" type="button" data-step="domain-model" aria-pressed="false">/domain-model</button>
+                  <button class="id-key step-key" type="button" data-step="to-user-journeys" aria-pressed="false">/to-user-journeys</button>
+                  <button class="id-key step-key" type="button" data-step="tech-definition" aria-pressed="false">/tech-definition</button>
+                  <button class="id-key step-key" type="button" data-step="code-style" aria-pressed="false">/code-style</button>
+                  <button class="id-key step-key" type="button" data-step="planning" aria-pressed="false">/planning</button>
+                </div>
+              </div>
+              <div class="id-module plate" role="group" aria-labelledby="ph-build">
+                <h3 class="plate-title" id="ph-build" data-i18n="phase.build">BUILD</h3>
+                <div class="key-row">
+                  <button class="id-key step-key" type="button" data-step="harness" aria-pressed="false">/harness</button>
+                  <button class="id-key step-key" type="button" data-step="mvp" aria-pressed="false">/mvp</button>
+                  <button class="id-key step-key" type="button" data-step="execute" aria-pressed="false">/execute</button>
+                </div>
+              </div>
+              <div class="id-module plate" role="group" aria-labelledby="ph-maintain">
+                <h3 class="plate-title" id="ph-maintain" data-i18n="phase.maintain">MAINTAIN</h3>
+                <div class="key-row">
+                  <button class="id-key step-key" type="button" data-step="reconcile" aria-pressed="false">/reconcile</button>
+                  <button class="id-key step-key" type="button" data-step="upgrade" aria-pressed="false">/upgrade</button>
+                </div>
+              </div>
+            </div>
+            <div class="id-readout step-readout" id="step-readout" aria-live="polite">
+              <div class="readout-heading"><span id="step-phase">DEFINE</span><span class="readout-mark" aria-hidden="true">→</span></div>
+              <p class="step-command" id="step-command">/prd-generator</p>
+              <p class="step-desc" id="step-desc">Interviews you about the business problem in focused batches and saves a business-level PRD with stable REQ IDs.</p>
+              <p class="step-out"><span class="id-metadata" data-i18n="step.produces">Produces</span><span id="step-out">docs/product/prd.md</span></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="band" id="principles" aria-labelledby="pr-title">
+          <div class="section-heading">
+            <div class="section-title"><span class="section-number">02</span><h2 id="pr-title" data-i18n="s2.title">Principles</h2></div>
+            <span class="section-index" data-i18n="s2.index">WHY IT BEHAVES THIS WAY</span>
+          </div>
+          <div class="card-grid">
+            <article class="id-module card"><span class="card-index">P1</span><h3 data-i18n="p1.t">One source of truth</h3><p data-i18n="p1.d">Requirements, journeys, decisions and tasks carry stable IDs (REQ, JRN, DEC, TASK). IDs are never reused, so every task traces back to the product value it serves.</p></article>
+            <article class="id-module card"><span class="card-index">P2</span><h3 data-i18n="p2.t">No invented decisions</h3><p data-i18n="p2.d">Unknowns stay open questions. A deferred TBD needs an owner, the affected IDs and a revisit point. The agent asks, or records a decision in autonomous mode, instead of guessing.</p></article>
+            <article class="id-module card"><span class="card-index">P3</span><h3 data-i18n="p3.t">Every change is recorded</h3><p data-i18n="p3.d">Each change to a specification writes a revision entry, and each technical decision gets its own ADR. History is added to, never rewritten.</p></article>
+            <article class="id-module card"><span class="card-index">P4</span><h3 data-i18n="p4.t">Checks, not opinions</h3><p data-i18n="p4.d">What a program can check, a program checks: one entry point for format, lint, tests and structural validators, called by git hooks, CI and the validator agent.</p></article>
+            <article class="id-module card"><span class="card-index">P5</span><h3 data-i18n="p5.t">Tests first, if you want</h3><p data-i18n="p5.d">The technical definition asks whether to write failing tests before the code. If yes, every task starts with its tests, and the failing tests can be committed first as proof.</p></article>
+            <article class="id-module card"><span class="card-index">P6</span><h3 data-i18n="p6.t">Safe by default</h3><p data-i18n="p6.d">No deployment, publication, paid services or security testing without explicit authorisation. You can opt out of the workflow for any single change by saying so.</p></article>
+          </div>
+        </section>
+
+        <section class="band" id="artifacts" aria-labelledby="ar-title">
+          <div class="section-heading">
+            <div class="section-title"><span class="section-number">03</span><h2 id="ar-title" data-i18n="s3.title">What lands in your repository</h2></div>
+            <span class="section-index" data-i18n="s3.index">ARTIFACTS</span>
+          </div>
+          <div class="tree-grid">
+            <p class="lede" data-i18n="s3.intro">The workflow writes into the project it serves, never into the skill folder. Paths adapt to the conventions the repository already has; these are the defaults.</p>
+            <div class="id-readout tree" tabindex="0" role="region" aria-label="Documentation tree" data-i18n-attr="aria-label:s3.tree"><pre>docs/
+├─ product/        prd.md · user-journeys.md · workflow-state.md
+├─ domain/         subdomains · ubiquitous language · contexts
+├─ engineering/    technical-definition.md · code-style.md
+├─ planning/       implementation-plan.md
+├─ adr/            one file per decision
+├─ revisions/      v1/ · v2/ · …  (product.md, tech.md)
+├─ harness/        validation.md · enforcement.md · agents.md
+├─ diataxis/       tutorials · how-to · reference · explanation
+└─ diagrams/       architecture.drawio
+AGENTS.md · CLAUDE.md   workflow rule + commands</pre></div>
+          </div>
+        </section>
+
+        <section class="band" id="tradeoffs" aria-labelledby="tr-title">
+          <div class="section-heading">
+            <div class="section-title"><span class="section-number">04</span><h2 id="tr-title" data-i18n="s4.title">Strengths and trade-offs</h2></div>
+            <span class="section-index" data-i18n="s4.index">AN HONEST ACCOUNT</span>
+          </div>
+          <div class="two-col">
+            <div class="id-module list-plate">
+              <h3 data-i18n="s4.pro">Strengths</h3>
+              <ul class="mark-list plus">
+                <li data-i18n="a1">Specs and code stay in sync: a standing rule in AGENTS.md or CLAUDE.md routes every change through the workflow, and /reconcile repairs drift.</li>
+                <li data-i18n="a2">Resumable: state is saved after each answer, so a new session continues where the last one stopped.</li>
+                <li data-i18n="a3">Agent-ready tasks: each has sources, dependencies, a Definition of Done, validation evidence and a stop condition.</li>
+                <li data-i18n="a4">MVP first: the minimum testable slice is separated from the rest of the plan.</li>
+                <li data-i18n="a5">Works on existing repositories: brownfield discovery reads code statically, and as-is mode documents without creating work.</li>
+                <li data-i18n="a6">Backwards compatible: after a skill update, /upgrade adds what older projects lack and deletes nothing.</li>
+              </ul>
+            </div>
+            <div class="id-module list-plate">
+              <h3 data-i18n="s4.con">Trade-offs</h3>
+              <ul class="mark-list minus">
+                <li data-i18n="b1">Overhead: built for products, not one-off scripts. A tiny fix in a project that uses it still touches artifacts unless you opt out.</li>
+                <li data-i18n="b2">Many small files and approval gates: a deliberate choice for traceability that slows quick exploration.</li>
+                <li data-i18n="b3">Opinionated structure: Diátaxis docs, ADRs, a DDD domain model and revision logs are mandatory parts of the flow.</li>
+                <li data-i18n="b4">Structural, not semantic: validators check links, IDs and indexes, not whether a requirement is right. Quality still depends on your answers and the agent.</li>
+                <li data-i18n="b5">Unbenchmarked: 44 eval cases are written, but no runner is bundled and none has been executed. /upgrade has not been tried on a real legacy project.</li>
+                <li data-i18n="b6">Enforcement needs activation: git hooks protect only once enabled, so CI is the backstop, and red commits need merges that keep history.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="band" id="start" aria-labelledby="st-title">
+          <div class="section-heading">
+            <div class="section-title"><span class="section-number">05</span><h2 id="st-title" data-i18n="s5.title">Get started</h2></div>
+            <span class="section-index" data-i18n="s5.index">THREE MOVES</span>
+          </div>
+          <ol class="steps-list">
+            <li class="id-well"><span class="card-index">1</span><h3 data-i18n="g1.t">Add the skill</h3><p data-i18n="g1.d">Copy skills/product-dev-workflow from the repository into the folder where your coding agent loads skills. It is a folder of Markdown, templates and eval cases; there is no installer or runtime.</p></li>
+            <li class="id-well"><span class="card-index">2</span><h3 data-i18n="g2.t">Start a step</h3><p data-i18n="g2.d">Use a step name or plain words, and say where the project lives. Slash names are routing conventions in your message, not registered commands.</p></li>
+            <li class="id-well"><span class="card-index">3</span><h3 data-i18n="g3.t">Follow the handoff</h3><p data-i18n="g3.d">Each step ends by naming the next one. Say “continue” to resume from the saved workflow state.</p></li>
+          </ol>
+          <div class="id-readout example" tabindex="0" role="region" aria-label="Example" data-i18n-attr="aria-label:g.example"><pre>/prd-generator I want a booking app for independent tutors.
+Keep it in conversation until I give you a repository.</pre></div>
+        </section>
+
+        <section class="band" id="faq" aria-labelledby="fq-title">
+          <div class="section-heading">
+            <div class="section-title"><span class="section-number">06</span><h2 id="fq-title" data-i18n="s6.title">FAQ</h2></div>
+            <span class="section-index" data-i18n="s6.index">COMMON QUESTIONS</span>
+          </div>
+          <div class="faq">
+            <details><summary data-i18n="q1">Is this a tool I install?</summary><p data-i18n="a_1">No. It is a skill: instructions, templates and evaluation cases that a coding agent reads and follows. It has no runtime of its own.</p></details>
+            <details><summary data-i18n="q2">Which agents does it work with?</summary><p data-i18n="a_2">It is written for coding agents that load skills from a folder with a SKILL.md entry point. Agent definitions adapt to the host's format; if the location is unknown, the skill asks once.</p></details>
+            <details><summary data-i18n="q3">Does it write the application code?</summary><p data-i18n="a_3">Only /mvp and /execute do, and only within the approved plan. Every other step writes documents.</p></details>
+            <details><summary data-i18n="q4">Will it interrogate me?</summary><p data-i18n="a_4">It asks one to three focused questions per batch and reuses earlier answers. In autonomous mode, which you must request explicitly, it records each question it would have asked as a decision instead.</p></details>
+            <details><summary data-i18n="q5">Can I skip the workflow for one change?</summary><p data-i18n="a_5">Yes. Say so explicitly. The artifacts are left untouched, the agent tells you they are out of sync, and /reconcile can recover the change later.</p></details>
+            <details><summary data-i18n="q6">What about a project that already exists?</summary><p data-i18n="a_6">Use /brownfield-discovery. It reads the repository statically, separates facts from inferred intent, and in as-is mode records what exists without creating tasks.</p></details>
+            <details><summary data-i18n="q7">I updated the skill. What happens to old projects?</summary><p data-i18n="a_7">Run /upgrade. It detects each capability from the project's contents, shows a plan, and only adds missing structure. Nothing is deleted, renamed or renumbered.</p></details>
+            <details><summary data-i18n="q8">Does it deploy or spend money?</summary><p data-i18n="a_8">No. Deployment, publication, paid services, production data and security tests outside the approved harness all need explicit authorisation.</p></details>
+            <details><summary data-i18n="q9">Is test-first development mandatory?</summary><p data-i18n="a_9">No. The technical definition asks, with a recommendation. You can choose tests alongside the code, or defer the decision.</p></details>
+            <details><summary data-i18n="q10">Which language are the documents written in?</summary><p data-i18n="a_10">The language you use for the workflow, kept consistent across artifacts. Code identifiers and quoted source text stay as they are.</p></details>
+            <details><summary data-i18n="q11">What is the licence?</summary><p data-i18n="a_11">The repository is published under the MIT License.</p></details>
+          </div>
+        </section>
+      </main>
+      <footer class="footer"><span>© <span id="year"></span> Vinicius Alexandre · <a href="https://github.com/alsvinicius/skills/blob/main/LICENSE" target="_blank" rel="noreferrer" data-i18n="foot.license">MIT License</a></span><a class="back-top" href="#" data-i18n="foot.top">Back to top ↑</a></footer>
+    </div>
+  </body>
+</html>
