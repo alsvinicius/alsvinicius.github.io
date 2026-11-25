@@ -66,12 +66,12 @@
             <div class="module-heading"><span id="snap-title" data-i18n="snap.title">SKILL SNAPSHOT</span><span class="profile-id">product-dev-workflow</span></div>
             <div class="overview-readout">
               <div class="readout-heading"><span data-i18n="snap.main">workflow steps</span></div>
-              <div class="overview-total">12</div>
+              <div class="overview-total">14</div>
               <dl class="snap-list">
-                <div><dt data-i18n="snap.refs">guides</dt><dd>25</dd></div>
-                <div><dt data-i18n="snap.tpl">templates</dt><dd>21</dd></div>
-                <div><dt data-i18n="snap.evals">eval cases</dt><dd>44</dd></div>
-                <div><dt data-i18n="snap.caps">capabilities</dt><dd>19</dd></div>
+                <div><dt data-i18n="snap.refs">guides</dt><dd>26</dd></div>
+                <div><dt data-i18n="snap.tpl">templates</dt><dd>24</dd></div>
+                <div><dt data-i18n="snap.evals">eval cases</dt><dd>50</dd></div>
+                <div><dt data-i18n="snap.caps">capabilities</dt><dd>21</dd></div>
               </dl>
               <div class="readout-footer"><span data-i18n="snap.note">Counted from the repository, 2026-11-24.</span><span class="status-led" aria-hidden="true"></span></div>
             </div>
@@ -81,7 +81,7 @@
         <section class="band" id="how" aria-labelledby="how-title">
           <div class="section-heading">
             <div class="section-title"><span class="section-number">01</span><h2 id="how-title" data-i18n="s1.title">How it works</h2></div>
-            <span class="section-index" data-i18n="s1.index">12 STEPS · 3 PHASES</span>
+            <span class="section-index" data-i18n="s1.index">14 STEPS · 3 PHASES + 1 MODE</span>
           </div>
           <p class="lede" data-i18n="s1.intro">Use any step on its own or follow the whole path. Each step reads the artifacts before it, writes one focused set of documents, and ends by recommending what comes next.</p>
           <div class="pipeline">
@@ -104,6 +104,7 @@
                   <button class="id-key step-key" type="button" data-step="harness" aria-pressed="false">/harness</button>
                   <button class="id-key step-key" type="button" data-step="mvp" aria-pressed="false">/mvp</button>
                   <button class="id-key step-key" type="button" data-step="execute" aria-pressed="false">/execute</button>
+                  <button class="id-key step-key" type="button" data-step="review-code" aria-pressed="false">/review-code</button>
                 </div>
               </div>
               <div class="id-module plate" role="group" aria-labelledby="ph-maintain">
@@ -111,6 +112,12 @@
                 <div class="key-row">
                   <button class="id-key step-key" type="button" data-step="reconcile" aria-pressed="false">/reconcile</button>
                   <button class="id-key step-key" type="button" data-step="upgrade" aria-pressed="false">/upgrade</button>
+                </div>
+              </div>
+              <div class="id-module plate" role="group" aria-labelledby="ph-mode">
+                <h3 class="plate-title" id="ph-mode" data-i18n="phase.mode">MODE</h3>
+                <div class="key-row">
+                  <button class="id-key step-key" type="button" data-step="autopilot" aria-pressed="false">/autopilot</button>
                 </div>
               </div>
             </div>
@@ -130,7 +137,7 @@
           </div>
           <div class="card-grid">
             <article class="id-module card"><span class="card-index">P1</span><h3 data-i18n="p1.t">One source of truth</h3><p data-i18n="p1.d">Requirements, journeys, decisions and tasks carry stable IDs (REQ, JRN, DEC, TASK). IDs are never reused, so every task traces back to the product value it serves.</p></article>
-            <article class="id-module card"><span class="card-index">P2</span><h3 data-i18n="p2.t">No invented decisions</h3><p data-i18n="p2.d">Unknowns stay open questions. A deferred TBD needs an owner, the affected IDs and a revisit point. The agent asks, or records a decision in autonomous mode, instead of guessing.</p></article>
+            <article class="id-module card"><span class="card-index">P2</span><h3 data-i18n="p2.t">No invented decisions</h3><p data-i18n="p2.d">Unknowns stay open questions. A deferred TBD needs an owner, the affected IDs and a revisit point. The agent asks, or records a decision with autopilot on, instead of guessing.</p></article>
             <article class="id-module card"><span class="card-index">P3</span><h3 data-i18n="p3.t">Every change is recorded</h3><p data-i18n="p3.d">Each change to a specification writes a revision entry, and each technical decision gets its own ADR. History is added to, never rewritten.</p></article>
             <article class="id-module card"><span class="card-index">P4</span><h3 data-i18n="p4.t">Checks, not opinions</h3><p data-i18n="p4.d">What a program can check, a program checks: one entry point for format, lint, tests and structural validators, called by git hooks, CI and the validator agent.</p></article>
             <article class="id-module card"><span class="card-index">P5</span><h3 data-i18n="p5.t">Tests first, if you want</h3><p data-i18n="p5.d">The technical definition asks whether to write failing tests before the code. If yes, every task starts with its tests, and the failing tests can be committed first as proof.</p></article>
@@ -138,9 +145,36 @@
           </div>
         </section>
 
+        <section class="band" id="guardrails" aria-labelledby="gr-title">
+          <div class="section-heading">
+            <div class="section-title"><span class="section-number">03</span><h2 id="gr-title" data-i18n="s7.title">Review and autopilot</h2></div>
+            <span class="section-index" data-i18n="s7.index">BUILT INTO THE FLOW</span>
+          </div>
+          <p class="lede" data-i18n="s7.intro">Two guardrails shape how the agent works: a dedicated agent reviews every change, and you decide how much the agent may decide for you.</p>
+          <div class="two-col">
+            <article class="id-module list-plate">
+              <h3 data-i18n="cr.t">Code review</h3>
+              <p class="plate-lede" data-i18n="cr.d">A dedicated Reviewer agent in the harness checks each task after validation, from the specification and the diff rather than from the author’s explanation. It is read-only: it reports findings and never fixes them.</p>
+              <ul class="plain-list">
+                <li data-i18n="cr.1">Findings carry a severity, a location, the requirement they violate and a concrete failure scenario.</li>
+                <li data-i18n="cr.2">A blocker or unwaived major finding stops the task from being done; fixes get at most two rounds before the task is marked blocked.</li>
+                <li data-i18n="cr.3">Every review is saved as its own file in docs/reviews/. /review-code also works on any branch or diff, with or without a harness.</li>
+              </ul>
+            </article>
+            <article class="id-module list-plate">
+              <h3 data-i18n="ap.t">Autopilot</h3>
+              <p class="plate-lede" data-i18n="ap.d">Turn it on and the agent runs the whole flow without questions. Wherever it would have asked you, it decides, continues and saves the decision as its own file in docs/autodecisions/.</p>
+              <ul class="plain-list">
+                <li data-i18n="ap.1">Switch it on or off at any moment with /autopilot, or by editing one field in the workflow state. Turning it off finishes the current action and asks you from then on.</li>
+                <li data-i18n="ap.2">Each decision records the question not asked, the options, the choice, the impact and how to reverse it. Technical ones also get an ADR.</li>
+                <li data-i18n="ap.3">It never invents numbers, spends money, deploys or skips validation and review; facts only you can supply stay as labelled assumptions.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
         <section class="band" id="artifacts" aria-labelledby="ar-title">
           <div class="section-heading">
-            <div class="section-title"><span class="section-number">03</span><h2 id="ar-title" data-i18n="s3.title">What lands in your repository</h2></div>
+            <div class="section-title"><span class="section-number">04</span><h2 id="ar-title" data-i18n="s3.title">What lands in your repository</h2></div>
             <span class="section-index" data-i18n="s3.index">ARTIFACTS</span>
           </div>
           <div class="tree-grid">
@@ -152,7 +186,9 @@
 ├─ planning/       implementation-plan.md
 ├─ adr/            one file per decision
 ├─ revisions/      v1/ · v2/ · …  (product.md, tech.md)
-├─ harness/        validation.md · enforcement.md · agents.md
+├─ harness/        validation · enforcement · code-review · agents
+├─ reviews/        CRV-0001-… one file per review
+├─ autodecisions/  AUTO-0001-… one file per decision
 ├─ diataxis/       tutorials · how-to · reference · explanation
 └─ diagrams/       architecture.drawio
 AGENTS.md · CLAUDE.md   workflow rule + commands</pre></div>
@@ -161,7 +197,7 @@ AGENTS.md · CLAUDE.md   workflow rule + commands</pre></div>
 
         <section class="band" id="tradeoffs" aria-labelledby="tr-title">
           <div class="section-heading">
-            <div class="section-title"><span class="section-number">04</span><h2 id="tr-title" data-i18n="s4.title">Strengths and trade-offs</h2></div>
+            <div class="section-title"><span class="section-number">05</span><h2 id="tr-title" data-i18n="s4.title">Strengths and trade-offs</h2></div>
             <span class="section-index" data-i18n="s4.index">AN HONEST ACCOUNT</span>
           </div>
           <div class="two-col">
@@ -174,6 +210,7 @@ AGENTS.md · CLAUDE.md   workflow rule + commands</pre></div>
                 <li data-i18n="a4">MVP first: the minimum testable slice is separated from the rest of the plan.</li>
                 <li data-i18n="a5">Works on existing repositories: brownfield discovery reads code statically, and as-is mode documents without creating work.</li>
                 <li data-i18n="a6">Backwards compatible: after a skill update, /upgrade adds what older projects lack and deletes nothing.</li>
+                <li data-i18n="a7">Reviewed and reversible: a dedicated reviewer checks every task, and every autopilot decision is its own file that you can confirm or reverse.</li>
               </ul>
             </div>
             <div class="id-module list-plate">
@@ -185,6 +222,7 @@ AGENTS.md · CLAUDE.md   workflow rule + commands</pre></div>
                 <li data-i18n="b4">Structural, not semantic: validators check links, IDs and indexes, not whether a requirement is right. Quality still depends on your answers and the agent.</li>
                 <li data-i18n="b5">Unbenchmarked: 44 eval cases are written, but no runner is bundled and none has been executed. /upgrade has not been tried on a real legacy project.</li>
                 <li data-i18n="b6">Enforcement needs activation: git hooks protect only once enabled, so CI is the backstop, and red commits need merges that keep history.</li>
+                <li data-i18n="b7">Autopilot decides on your behalf, so its choices stay assumptions until you confirm them, and the reviewer is another agent pass, not a human review.</li>
               </ul>
             </div>
           </div>
@@ -192,7 +230,7 @@ AGENTS.md · CLAUDE.md   workflow rule + commands</pre></div>
 
         <section class="band" id="start" aria-labelledby="st-title">
           <div class="section-heading">
-            <div class="section-title"><span class="section-number">05</span><h2 id="st-title" data-i18n="s5.title">Get started</h2></div>
+            <div class="section-title"><span class="section-number">06</span><h2 id="st-title" data-i18n="s5.title">Get started</h2></div>
             <span class="section-index" data-i18n="s5.index">THREE MOVES</span>
           </div>
           <ol class="steps-list">
@@ -206,14 +244,16 @@ Keep it in conversation until I give you a repository.</pre></div>
 
         <section class="band" id="faq" aria-labelledby="fq-title">
           <div class="section-heading">
-            <div class="section-title"><span class="section-number">06</span><h2 id="fq-title" data-i18n="s6.title">FAQ</h2></div>
+            <div class="section-title"><span class="section-number">07</span><h2 id="fq-title" data-i18n="s6.title">FAQ</h2></div>
             <span class="section-index" data-i18n="s6.index">COMMON QUESTIONS</span>
           </div>
           <div class="faq">
             <details><summary data-i18n="q1">Is this a tool I install?</summary><p data-i18n="a_1">No. It is a skill: instructions, templates and evaluation cases that a coding agent reads and follows. It has no runtime of its own.</p></details>
             <details><summary data-i18n="q2">Which agents does it work with?</summary><p data-i18n="a_2">It is written for coding agents that load skills from a folder with a SKILL.md entry point. Agent definitions adapt to the host's format; if the location is unknown, the skill asks once.</p></details>
             <details><summary data-i18n="q3">Does it write the application code?</summary><p data-i18n="a_3">Only /mvp and /execute do, and only within the approved plan. Every other step writes documents.</p></details>
-            <details><summary data-i18n="q4">Will it interrogate me?</summary><p data-i18n="a_4">It asks one to three focused questions per batch and reuses earlier answers. In autonomous mode, which you must request explicitly, it records each question it would have asked as a decision instead.</p></details>
+            <details><summary data-i18n="q13">Does the reviewer fix problems?</summary><p data-i18n="a_13">No. The Reviewer agent is read-only. It reports findings with evidence, and the Executor or you fix them. A task is not done while a blocker or unwaived major finding is open.</p></details>
+            <details><summary data-i18n="q4">Will it interrogate me?</summary><p data-i18n="a_4">It asks one to three focused questions per batch and reuses earlier answers. With autopilot on, which you must request explicitly, it saves each question it would have asked as a decision in docs/autodecisions/.</p></details>
+            <details><summary data-i18n="q12">Can I turn autopilot on and off?</summary><p data-i18n="a_12">Yes, at any moment. Say so, use /autopilot on or off, or edit the Autopilot field in the workflow state. Turning it off finishes the current action, lists the decisions taken and asks you from then on. Nothing already decided is undone; you can confirm or reverse each decision.</p></details>
             <details><summary data-i18n="q5">Can I skip the workflow for one change?</summary><p data-i18n="a_5">Yes. Say so explicitly. The artifacts are left untouched, the agent tells you they are out of sync, and /reconcile can recover the change later.</p></details>
             <details><summary data-i18n="q6">What about a project that already exists?</summary><p data-i18n="a_6">Use /brownfield-discovery. It reads the repository statically, separates facts from inferred intent, and in as-is mode records what exists without creating tasks.</p></details>
             <details><summary data-i18n="q7">I updated the skill. What happens to old projects?</summary><p data-i18n="a_7">Run /upgrade. It detects each capability from the project's contents, shows a plan, and only adds missing structure. Nothing is deleted, renamed or renumbered.</p></details>
